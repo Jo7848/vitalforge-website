@@ -73,7 +73,7 @@ const Navbar = ({ setCurrentPage }) => {
             color: white;
             padding: 0.5rem 0;
             display: block;
-            font-size: 2rem; /* Adjusted for full-screen menu */
+            font-size: 2rem;
           }
           .nav-link:hover {
             color: #a855f7;
@@ -81,16 +81,16 @@ const Navbar = ({ setCurrentPage }) => {
 
           @media (min-width: 768px) {
             .desktop-nav {
-              display: flex;
+              display: flex !important;
               gap: 2rem;
             }
             .mobile-menu-button,
             .mobile-nav {
-              display: none;
+              display: none !important;
             }
             .nav-link {
               padding: 0;
-              font-size: 1rem; /* Revert font size for desktop */
+              font-size: 1rem;
             }
           }
           
@@ -105,7 +105,7 @@ const Navbar = ({ setCurrentPage }) => {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 2rem; /* Spacing between links */
+            gap: 2rem;
             animation: slideDownAndFadeIn 0.3s ease-out forwards;
           }
         `}
