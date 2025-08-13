@@ -45,6 +45,17 @@ const Navbar = ({ setCurrentPage }) => {
     >
       <style>
         {`
+          @keyframes slideDownAndFadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(-10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          
           .desktop-nav {
             display: none;
           }
@@ -96,6 +107,7 @@ const Navbar = ({ setCurrentPage }) => {
             flex-direction: column;
             gap: 1rem;
             box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+            animation: slideDownAndFadeIn 0.3s ease-out forwards;
           }
         `}
       </style>
