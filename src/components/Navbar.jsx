@@ -73,7 +73,7 @@ const Navbar = ({ setCurrentPage }) => {
             color: white;
             padding: 0.5rem 0;
             display: block;
-            font-size: 2rem;
+            font-size: 1rem; /* Adjusted for dropdown */
           }
           .nav-link:hover {
             color: #a855f7;
@@ -95,18 +95,20 @@ const Navbar = ({ setCurrentPage }) => {
           }
           
           .mobile-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
+            position: absolute;
+            top: 100%;
             right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.95);
+            background-color: rgba(0, 0, 0, 0.9);
+            border: 1px solid #a855f7;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            padding: 1rem;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
+            gap: 1rem;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
             animation: slideDownAndFadeIn 0.3s ease-out forwards;
+            min-width: 150px;
           }
         `}
       </style>
