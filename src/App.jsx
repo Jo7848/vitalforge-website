@@ -1,16 +1,13 @@
 // src/App.jsx
-import { useState } from 'react';
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
 import StoriesPage from './pages/StoriesPage';
-import FaqsPage from './pages/FaqsPage';
-import BlogPage from './pages/BlogPage'; // Import the new BlogPage component
+import FAQsPage from './pages/FaqsPage';
+import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import logo from './assets/logo.png';
-import NeonButton from './components/NeonButton';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -18,7 +15,7 @@ const App = () => {
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
-        return <HomePage onStartJourney={() => setCurrentPage('services')} />;
+        return <HomePage />;
       case 'about':
         return <AboutPage />;
       case 'services':
@@ -26,8 +23,8 @@ const App = () => {
       case 'stories':
         return <StoriesPage />;
       case 'faqs':
-        return <FaqsPage />;
-      case 'blog': // New case for the Blog page
+        return <FAQsPage />;
+      case 'blog':
         return <BlogPage />;
       case 'contact':
         return <ContactPage />;
@@ -37,24 +34,11 @@ const App = () => {
   };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'black', color: 'white', fontFamily: 'Inter, sans-serif' }}>
-      <style>
-        {`
-          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
-          body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: #000;
-            color: #fff;
-          }
-          * {
-            box-sizing: border-box;
-          }
-        `}
-      </style>
+    <div>
       <Navbar setCurrentPage={setCurrentPage} />
-      {renderPage()}
-      <Footer onNavigate={setCurrentPage} />
+      <div className="content-container">
+        {renderPage()}
+      </div>
     </div>
   );
 };
