@@ -1,49 +1,78 @@
-import { useState, useEffect } from 'react';
+// src/pages/ServicesPage.jsx
+import React from 'react';
 import NeonButton from '../components/NeonButton';
 
 const ServicesPage = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [isTablet, setIsTablet] = useState(window.innerWidth < 1024);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-      setIsTablet(window.innerWidth < 1024);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   const handleWhatsAppClick = (message) => {
     const phoneNumber = '+254746631707';
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
 
-  let gridTemplateColumns = '1fr';
-  if (!isMobile && isTablet) {
-    gridTemplateColumns = 'repeat(2, 1fr)';
-  } else if (!isMobile && !isTablet) {
-    gridTemplateColumns = 'repeat(4, 1fr)'; // Updated for the 4 service cards
-  }
-
   return (
     <div style={{ minHeight: '100vh', padding: '6rem 2rem', backgroundColor: 'black', color: 'white' }}>
+      <style>
+        {`
+          @keyframes fadeInSlideUp {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .services-title {
+            animation: fadeInSlideUp 0.8s ease-out forwards;
+          }
+
+          .services-subtitle {
+            animation: fadeInSlideUp 0.8s ease-out forwards;
+            animation-delay: 0.2s;
+          }
+
+          .service-card {
+            opacity: 0;
+            animation: fadeInSlideUp 0.8s ease-out forwards;
+          }
+          .service-card:nth-child(1) { animation-delay: 0.4s; }
+          .service-card:nth-child(2) { animation-delay: 0.6s; }
+          .service-card:nth-child(3) { animation-delay: 0.8s; }
+          .service-card:nth-child(4) { animation-delay: 1s; }
+
+          .service-cards-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+          }
+
+          @media (min-width: 768px) {
+            .service-cards-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+
+          @media (min-width: 1024px) {
+            .service-cards-grid {
+              grid-template-columns: repeat(4, 1fr);
+            }
+          }
+        `}
+      </style>
       <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-        <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#a855f7', marginBottom: '2rem' }}>Our Services</h1>
-        <p style={{ fontSize: '1.25rem', lineHeight: '1.6', marginBottom: '4rem' }}>
+        <h1 className="services-title" style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#a855f7', marginBottom: '2rem', opacity: 0 }}>
+          Our Services
+        </h1>
+        <p className="services-subtitle" style={{ fontSize: '1.25rem', lineHeight: '1.6', marginBottom: '4rem', opacity: 0 }}>
           At VITALFORGE, we offer a range of personalized services designed to help you achieve your fitness goals. All programs are grounded in science and tailored to your unique needs.
         </p>
 
         {/* Responsive Grid for Service Cards */}
-        <div style={{
-          display: 'grid',
-          gap: '2rem',
-          gridTemplateColumns: gridTemplateColumns,
-        }}>
+        <div className="service-cards-grid">
           {/* Individual Sessions */}
-          <div style={{
+          <div className="service-card" style={{
             backgroundColor: '#1a1a1a',
             padding: '2rem',
             borderRadius: '8px',
@@ -71,7 +100,7 @@ const ServicesPage = () => {
           </div>
 
           {/* Premium Packages */}
-          <div style={{
+          <div className="service-card" style={{
             backgroundColor: '#1a1a1a',
             padding: '2rem',
             borderRadius: '8px',
@@ -99,7 +128,7 @@ const ServicesPage = () => {
           </div>
 
           {/* Injury rehabilitation and posture correction */}
-          <div style={{
+          <div className="service-card" style={{
             backgroundColor: '#1a1a1a',
             padding: '2rem',
             borderRadius: '8px',
@@ -127,7 +156,7 @@ const ServicesPage = () => {
           </div>
 
           {/* Virtual group sessions */}
-          <div style={{
+          <div className="service-card" style={{
             backgroundColor: '#1a1a1a',
             padding: '2rem',
             borderRadius: '8px',
